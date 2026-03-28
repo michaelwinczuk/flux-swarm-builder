@@ -1,0 +1,26 @@
+{
+  "role": "mesh_coordinator",
+  "description": "Matches capability requests to available capabilities using local LLM. Falls back to exact tag matching if local model is unavailable.",
+  "model": {
+    "provider": "ollama",
+    "model_id": "phi3:3.8b-mini-128k-instruct-q4_K_M",
+    "endpoint": "http://127.0.0.1:11434"
+  },
+  "matching": {
+    "prompt_template": "You are a capability matcher for a multi-agent swarm. Given a NEED and a list of AVAILABLE capabilities, return the best match as JSON.\n\nRules:\n- Match by semantic similarity of tags and descriptions\n- Prefer cheapest capable option (local > cloud, free > paid)\n- If no match, return {\"match\": null, \"reason\": \"...\"}\n- If multiple matches, rank by relevance then cost\n\nNEED: {{need}}\n\nAVAILABLE:\n{{capabilities}}\n\nRespond with JSON only:\n{\"match\": \"capability_id\", \"agent\": \"agent_id\", \"confidence\": 0.0-1.0, \"reason\": \"...\"}",
+    "fallback": "exact_tag_match",
+    "cache_ttl_seconds": 300,
+    "max_candidates": 10
+  },
+  "discovery": {
+    "watch_dirs": ["mesh/llm", "mesh/tools", "mesh/viewers", "mesh/claws"],
+    "poll_interval_ms": 1000,
+    "debounce_ms": 500
+  },
+  "constitution_check": {
+    "enabled": true,
+    "constitution_path": "constitution.md",
+    "blocked_types": [],
+    "require_approval_for": ["claw"]
+  }
+}

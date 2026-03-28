@@ -1,0 +1,34 @@
+{
+  "agent_id": "alpha",
+  "updated_at": "2026-03-27T20:00:00Z",
+  "capabilities": [
+    {
+      "id": "llm_local_phi3",
+      "type": "llm",
+      "provides": "Fast local inference for classification, tagging, and structured output. 3.8B parameter model, sub-200ms response.",
+      "status": "active",
+      "config": {
+        "provider": "ollama",
+        "model_id": "phi3:3.8b-mini-128k-instruct-q4_K_M",
+        "endpoint": "http://127.0.0.1:11434",
+        "cost_per_call": 0.0,
+        "max_tokens": 4096
+      },
+      "tags": ["local", "fast", "classification", "tagging", "json", "structured", "free"]
+    },
+    {
+      "id": "llm_anthropic_opus",
+      "type": "llm",
+      "provides": "Deep reasoning and synthesis via Claude Opus. Use for complex analysis requiring nuanced understanding.",
+      "status": "active",
+      "config": {
+        "provider": "anthropic",
+        "model_id": "claude-opus-4-6",
+        "api_key_env": "ANTHROPIC_API_KEY",
+        "cost_per_call": 0.15,
+        "max_tokens": 8192
+      },
+      "tags": ["reasoning", "synthesis", "deep", "expensive", "cloud"]
+    }
+  ]
+}

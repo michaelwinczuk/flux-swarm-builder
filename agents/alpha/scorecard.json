@@ -1,0 +1,13 @@
+{
+  "agent_id": "alpha",
+  "missions_completed": 0,
+  "success_rate": 0.0,
+  "average_quality_grade": null,
+  "knowledge_contribution_count": 0,
+  "last_mission_date": null,
+  "domain_scores": {},
+  "reasoning_depth_avg": 0.0,
+  "hallucination_rate": 0.0,
+  "cost_efficiency": 0.0,
+  "total_cost": 0.0
+}

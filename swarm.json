@@ -1,0 +1,27 @@
+{
+  "name": "my-swarm",
+  "version": "0.1.0",
+  "created": "2026-03-27",
+  "mesh": {
+    "coordinator": "ollama",
+    "model": "phi3:3.8b-mini-128k-instruct-q4_K_M",
+    "endpoint": "http://127.0.0.1:11434",
+    "fallback": "exact_match"
+  },
+  "agents": {
+    "alpha": {
+      "status": "idle",
+      "cartridge": "agents/alpha/cartridge.md",
+      "map_position": { "x": 400, "y": 300 }
+    },
+    "sentinel": {
+      "status": "idle",
+      "cartridge": "agents/sentinel/cartridge.md",
+      "map_position": { "x": 800, "y": 300 }
+    }
+  },
+  "map": {
+    "width": 1920,
+    "height": 1080
+  }
+}

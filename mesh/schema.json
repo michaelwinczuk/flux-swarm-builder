@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capability-token-v1",
+  "description": "Schema for capability tokens in the swarm mesh. Each agent declares its capabilities here.",
+  "type": "object",
+  "required": ["agent_id", "capabilities", "updated_at"],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "Name of the agent declaring capabilities"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this capability file was last updated"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "provides", "status"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique capability identifier (e.g., llm_anthropic_opus, tool_web_search)"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["llm", "tool", "viewer", "claw"],
+            "description": "Capability type — determines mesh subdirectory"
+          },
+          "provides": {
+            "type": "string",
+            "description": "Human-readable description of what this capability does"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "disabled", "rate_limited", "error"],
+            "description": "Current capability status"
+          },
+          "config": {
+            "type": "object",
+            "description": "Type-specific configuration",
+            "properties": {
+              "provider": { "type": "string" },
+              "model_id": { "type": "string" },
+              "api_key_env": { "type": "string" },
+              "endpoint": { "type": "string" },
+              "refresh_interval_ms": { "type": "integer" },
+              "cost_per_call": { "type": "number" },
+              "max_tokens": { "type": "integer" }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Searchable tags for capability matching (e.g., ['reasoning', 'code', 'fast'])"
+          }
+        }
+      }
+    }
+  }
+}

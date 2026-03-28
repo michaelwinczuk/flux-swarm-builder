@@ -1,0 +1,17 @@
+{
+  "agent_id": "_system",
+  "updated_at": "2026-03-27T20:00:00Z",
+  "capabilities": [
+    {
+      "id": "viewer_eth_price",
+      "type": "viewer",
+      "provides": "Real-time ETH/USD price from CoinGecko. Read-only, refreshes every 30s.",
+      "status": "active",
+      "config": {
+        "endpoint": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd",
+        "refresh_interval_ms": 30000
+      },
+      "tags": ["price", "ethereum", "eth", "usd", "crypto", "oracle", "real-time", "free"]
+    }
+  ]
+}
